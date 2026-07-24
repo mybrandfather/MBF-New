@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+# vercel
+.vercel
+# env & secrets — NEVER commit these
+.env
+.env*.local
+# os / editor junk
+.DS_Store
+Thumbs.db
+*.log
+# local build helpers we don't need in the repo
+*-embed.png

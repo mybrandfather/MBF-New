@@ -1,0 +1,7 @@
+{
+  "name": "mybrandfather-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MyBrandFather \u2014 creative + AI agency website (static + Vercel serverless lead handler)",
+  "type": "module"
+}
