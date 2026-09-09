@@ -29,6 +29,8 @@
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
   @keyframes scrollPulse{0%{transform:translateY(0);opacity:1}70%{transform:translateY(26px);opacity:0}100%{transform:translateY(0);opacity:0}}
   @keyframes navSheen{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  @media(max-width:900px){.mbf-nav{overflow-x:auto!important;max-width:100%;padding-bottom:6px}.mbf-grid-3,.mbf-grid-4,.mbf-grid-5,.mbf-split{grid-template-columns:1fr!important}.mbf-tabs{overflow-x:auto;justify-content:flex-start!important;padding-bottom:8px}.mbf-tabs button,.mbf-tabs a{white-space:nowrap;flex:0 0 auto}.mbf-package-card{min-width:0}.mbf-portfolio-grid{grid-template-columns:1fr 1fr!important;grid-auto-rows:160px!important}.mbf-footer-nav{justify-content:center!important;flex-wrap:wrap!important}.mbf-pad{padding-left:20px!important;padding-right:20px!important}}
+  @media(max-width:560px){.mbf-portfolio-grid{grid-template-columns:1fr!important}.mbf-mobile-stack{display:flex!important;flex-direction:column!important}.mbf-hide-mobile{display:none!important}}
 </style>
 
 </helmet>
@@ -57,7 +59,7 @@
       <a href="#top" style="display:flex;align-items:center;text-decoration:none">
         <img src="assets/brandfather-logo.png" alt="BrandFather" style="height:64px;width:auto;display:block">
       </a>
-      <nav style="display:flex;gap:2px;margin-left:auto;align-items:center;flex-wrap:nowrap">
+      <nav class="mbf-nav" style="display:flex;gap:2px;margin-left:auto;align-items:center;flex-wrap:nowrap">
         <sc-for list="{{ navLinks }}" as="lnk" hint-placeholder-count="6">
           <a href="{{ lnk.href }}" style="position:relative;font-size:14px;font-weight:500;color:#F7F5F1;text-decoration:none;padding:9px 11px;border-radius:8px;white-space:nowrap;transition:color .25s,background .25s,transform .25s;overflow:hidden" style-hover="color:#101418;background:#F7F5F1;transform:translateY(-2px)">{{ lnk.label }}</a>
         </sc-for>
@@ -314,7 +316,7 @@
   </section>
 
   <!-- ===== PORTFOLIO (magazine layout) ===== -->
-  <section id="work" data-screen-label="Portfolio" style="padding:100px 0;background:#FAFAF8">
+  <section id="portfolio" data-screen-label="Portfolio" style="padding:100px 0;background:#FAFAF8">
     <div style="max-width:1240px;margin:0 auto;padding:0 32px">
       <div data-reveal="1" style="display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;margin-bottom:60px">
         <div style="max-width:640px">
@@ -326,40 +328,41 @@
           <img src="assets/portfolio-01.webp" alt="MyBrandFather portfolio showcase" loading="lazy" style="width:100%;aspect-ratio:4/3;display:block;object-fit:cover">
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:22px">
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 2;grid-row:span 2">
+      <div class="mbf-tabs" style="display:flex;gap:10px;flex-wrap:wrap;margin:-28px 0 32px"><sc-for list="{{ portfolioFilters }}" as="flt" hint-placeholder-count="7"><button onClick="{{ () => setPortfolioFilter(flt) }}" style="border:1.5px solid #E2DED5;background:#FFFFFF;color:#14181C;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer">{{ flt }}</button></sc-for></div>
+      <div class="mbf-portfolio-grid" style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:22px">
+        <figure data-reveal="1" data-portfolio-category="Illustration" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 2;grid-row:span 2">
           <img src="assets/brother-creature-devil.png" alt="Character Illustration" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Character Illustration</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Illustration" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
           <img src="assets/brother-knight-green.png" alt="Character Design" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Character Design</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Illustration" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
           <img src="assets/brother-samurai-hat.png" alt="Character Design" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Character Design</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Illustration" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
           <img src="assets/brother-warrior-masked.png" alt="Character Illustration" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Character Illustration</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="AI & Interactive" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
           <img src="assets/brother-robot-purple.png" alt="Character Illustration" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Character Illustration</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 2;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Logos" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 2;grid-row:span 2">
           <img src="assets/brother-wildpine-logo.png" alt="Logo Design" style="width:100%;height:100%;object-fit:contain;background:#fff;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Logo Design</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Illustration" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
           <img src="assets/brother-samurai-avengers.png" alt="Character Design" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Character Design</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Illustration" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 1;grid-row:span 2">
           <img src="assets/brother-westside-hotwheelz.png" alt="Illustration" style="width:100%;height:100%;object-fit:cover;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Illustration</figcaption>
         </figure>
-        <figure data-reveal="1" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 2;grid-row:span 2">
+        <figure data-reveal="1" data-portfolio-category="Logos" style="margin:0;border-radius:20px;overflow:hidden;position:relative;background:#DDD9D2;grid-column:span 2;grid-row:span 2">
           <img src="assets/brother-lion-head.png" alt="Logo Design" style="width:100%;height:100%;object-fit:contain;background:#fff;display:block">
           <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;background:linear-gradient(transparent,rgba(16,20,24,.78));color:#F7F5F1;font-size:14.5px;font-weight:600;letter-spacing:.04em;pointer-events:none">Logo Design</figcaption>
         </figure>
@@ -368,14 +371,14 @@
   </section>
 
   <!-- ===== AI DIFFERENCE ===== -->
-  <section id="ai" data-screen-label="AI Difference" style="padding:110px 0;background:#101418;color:#F7F5F1">
+  <section id="mbf-lab" data-screen-label="MBF Lab" style="padding:110px 0;background:#101418;color:#F7F5F1">
     <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
       <div data-reveal="1">
-        <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5FE6D4">The MyBrandFather difference</span>
-        <h2 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,44px);line-height:1.14;letter-spacing:-.015em;margin:18px 0 20px">Most agencies stop at your logo and website. We give you an AI employee.</h2>
-        <p style="color:#C9CDD2;margin:0 0 16px">A great brand gets the phone ringing. A great website gets the click. But what happens at 9pm on a Sunday, or when three calls come in at once?</p>
-        <p style="color:#C9CDD2;margin:0 0 24px">We deploy <strong style="color:#F7F5F1">AI employees</strong> — chatbots and voice receptionists that answer questions, capture leads, book appointments, and support your customers 24/7.</p>
-        <p style="border-left:3px solid #1FB8A6;padding-left:16px;color:#5FE6D4;font-weight:600;margin:0">Look bigger. Run leaner. The same small team competing like a much larger one.</p>
+        <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5FE6D4">MBF Lab</span>
+        <h2 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,44px);line-height:1.14;letter-spacing:-.015em;margin:18px 0 20px">Experimental creative technology, built beside the client work.</h2>
+        <p style="color:#C9CDD2;margin:0 0 16px">MBF Lab is where we explore 3D web experiences, AI demos, interactive websites, motion, and experimental tools before they become client-ready offerings.</p>
+        <p style="color:#C9CDD2;margin:0 0 24px">This stays separate from Portfolio: Portfolio is completed showcase work, while MBF Lab is where future-facing ideas are tested with care.</p>
+        <p style="border-left:3px solid #1FB8A6;padding-left:16px;color:#5FE6D4;font-weight:600;margin:0">3D web experiences · AI receptionist demos · interactive websites · creative technology · experimental motion</p>
       </div>
       <div data-reveal="1" style="border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.4);border:1px solid rgba(247,245,241,.1)">
         <img src="assets/studio-1.jpg" alt="AI chatbot / dashboard" style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block">
@@ -421,38 +424,26 @@
     </div>
   </section>
 
-  <!-- ===== BLOG ===== -->
-  <section id="blog" data-screen-label="Blog" style="padding:100px 0;background:#FAFAF8">
-    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
-      <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:56px">
-        <div style="max-width:640px">
-          <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8A6A4A">From the blog</span>
-          <h2 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:clamp(32px,3.8vw,50px);line-height:1.1;letter-spacing:-.02em;margin:18px 0 0">Ideas on brand, design, and AI.</h2>
+  <!-- ===== SERVICES & PACKAGES ===== -->
+  <section id="packages-preview" data-screen-label="Services and Packages" style="padding:100px 0;background:#FAFAF8">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px" class="mbf-pad">
+      <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:52px">
+        <div style="max-width:680px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8A6A4A">Services &amp; Packages</span>
+          <h2 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:clamp(32px,3.8vw,50px);line-height:1.1;letter-spacing:-.02em;margin:18px 0 16px">Choose the creative path that fits your next move.</h2>
+          <p style="color:#585E64;margin:0;font-size:18px">Explore focused package categories now. Final pricing and exact deliverables will be added after your package details are approved.</p>
         </div>
-        <a href="Blog.dc.html" style="font-size:15px;font-weight:600;color:#A85B1F;text-decoration:none;white-space:nowrap">View all posts →</a>
+        <a href="Packages.dc.html" style="font-size:15px;font-weight:600;color:#A85B1F;text-decoration:none;white-space:nowrap">View all packages -></a>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
-        <a href="Blog - Website Is Your Flagship.dc.html" data-reveal="1" style="text-decoration:none;color:inherit;display:block;border-radius:20px;overflow:hidden;background:#FFFFFF;box-shadow:0 1px 2px rgba(20,20,20,.05);transition:transform .35s,box-shadow .35s" style-hover="transform:translateY(-8px);box-shadow:0 26px 52px rgba(20,20,20,.12)">
-          <div style="aspect-ratio:4/3;overflow:hidden;background:#EFECE6"><img src="assets/studio-1.jpg" alt="Your Website Is Your Flagship" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-          <div style="padding:24px 24px 28px">
-            <h3 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:19px;margin:0 0 10px;line-height:1.3">Your Website Is Your Flagship</h3>
-            <p style="font-size:14.5px;color:#585E64;margin:0;line-height:1.6">Why your homepage carries more brand weight than any storefront.</p>
-          </div>
-        </a>
-        <a href="Blog - Premium Brands Refuse Price Competition.dc.html" data-reveal="1" style="text-decoration:none;color:inherit;display:block;border-radius:20px;overflow:hidden;background:#FFFFFF;box-shadow:0 1px 2px rgba(20,20,20,.05);transition:transform .35s,box-shadow .35s" style-hover="transform:translateY(-8px);box-shadow:0 26px 52px rgba(20,20,20,.12)">
-          <div style="aspect-ratio:4/3;overflow:hidden;background:#EFECE6"><img src="assets/studio-2.jpg" alt="Premium Brands Refuse Price Competition" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-          <div style="padding:24px 24px 28px">
-            <h3 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:19px;margin:0 0 10px;line-height:1.3">Premium Brands Refuse Price Competition</h3>
-            <p style="font-size:14.5px;color:#585E64;margin:0;line-height:1.6">How strong positioning lets you compete on value, not discounts.</p>
-          </div>
-        </a>
-        <a href="Blog - AI Receptionist Era.dc.html" data-reveal="1" style="text-decoration:none;color:inherit;display:block;border-radius:20px;overflow:hidden;background:#FFFFFF;box-shadow:0 1px 2px rgba(20,20,20,.05);transition:transform .35s,box-shadow .35s" style-hover="transform:translateY(-8px);box-shadow:0 26px 52px rgba(20,20,20,.12)">
-          <div style="aspect-ratio:4/3;overflow:hidden;background:#EFECE6"><img src="assets/studio-3.jpg" alt="The AI Receptionist Era for Service Businesses" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-          <div style="padding:24px 24px 28px">
-            <h3 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:19px;margin:0 0 10px;line-height:1.3">The AI Receptionist Era for Service Businesses</h3>
-            <p style="font-size:14.5px;color:#585E64;margin:0;line-height:1.6">Why round-the-clock AI reception is becoming table stakes.</p>
-          </div>
-        </a>
+      <div class="mbf-grid-5" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px">
+        <sc-for list="{{ packageCategories }}" as="pkg" hint-placeholder-count="5">
+          <a href="{{ pkg.href }}" data-reveal="1" style="text-decoration:none;color:inherit;background:#FFFFFF;border-radius:18px;padding:24px 20px;box-shadow:0 1px 2px rgba(20,20,20,.05);border:1px solid rgba(20,20,20,.05);display:flex;flex-direction:column;gap:14px;min-height:220px;transition:transform .35s,box-shadow .35s" style-hover="transform:translateY(-8px);box-shadow:0 24px 48px rgba(20,20,20,.12)">
+            <span style="width:42px;height:42px;border-radius:13px;background:#F1EEE7;color:#A85B1F;display:flex;align-items:center;justify-content:center;font-family:'General Sans',Georgia,sans-serif;font-weight:700">{{ pkg.n }}</span>
+            <h3 style="font-family:'General Sans',Georgia,sans-serif;font-weight:600;font-size:18px;line-height:1.22;margin:0">{{ pkg.title }}</h3>
+            <p style="font-size:14px;color:#585E64;margin:0;line-height:1.55">{{ pkg.desc }}</p>
+            <span style="margin-top:auto;font-size:13.5px;font-weight:600;color:#A85B1F">View Packages</span>
+          </a>
+        </sc-for>
       </div>
     </div>
   </section>
@@ -482,18 +473,22 @@
         </div>
       </div>
       <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:26px;font-size:14px">
-        <a href="About.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">About Us</a>
+        <a href="About.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">About</a>
+        <a href="Packages.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Packages</a>
+        <a href="#portfolio" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Portfolio</a>
+        <a href="#mbf-lab" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">MBF Lab</a>
         <a href="FAQ.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">FAQ</a>
         <a href="Privacy.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Privacy Policy</a>
         <a href="Terms.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Terms of Service</a>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;border-top:1px solid rgba(247,245,241,.1);padding-top:28px;font-size:14px">
         <span>© 2026 MyBrandFather. All rights reserved.</span>
-        <nav style="display:flex;gap:22px">
+        <nav class="mbf-footer-nav" style="display:flex;gap:22px">
           <a href="#services" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Services</a>
           <a href="#templates" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Templates</a>
-          <a href="#work" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Work</a>
-          <a href="#blog" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Blog</a>
+          <a href="Packages.dc.html" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Packages</a>
+          <a href="#portfolio" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Portfolio</a>
+          <a href="#mbf-lab" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">MBF Lab</a>
           <a href="#quote" style="color:#B9BFC6;text-decoration:none;transition:color .25s" style-hover="color:#E8955A">Get a Quote</a>
         </nav>
       </div>
@@ -505,6 +500,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 900}}">
 class Component extends DCLogic {
+  state = { portfolioFilter: 'All' };
   bflyRef = React.createRef();
   bflyBobRef = React.createRef();
   wingLRef = React.createRef();
@@ -520,14 +516,21 @@ class Component extends DCLogic {
       wingLRef: this.wingLRef, wingRRef: this.wingRRef,
       headerRef: this.headerRef, footLogoRef: this.footLogoRef,
       vidARef: this.vidARef, vidBRef: this.vidBRef,
+      setPortfolioFilter: (filter) => {
+        this.setState({ portfolioFilter: filter });
+        document.querySelectorAll('[data-portfolio-category]').forEach((el) => {
+          const show = filter === 'All' || el.getAttribute('data-portfolio-category') === filter;
+          el.style.display = show ? '' : 'none';
+        });
+      },
+      activePortfolioFilter: this.state.portfolioFilter,
       navLinks: [
-        { label: 'Services', href: '#services' },
-        { label: 'Templates', href: '#templates' },
-        { label: 'Portfolio', href: '#work' },
-        { label: 'Blog', href: '#blog' },
+        { label: 'Home', href: '#top' },
         { label: 'About', href: 'About.dc.html' },
-        { label: 'FAQ', href: 'FAQ.dc.html' },
-        { label: 'Contact', href: 'Contact.dc.html' },
+        { label: 'Packages', href: 'Packages.dc.html' },
+        { label: 'Portfolio', href: '#portfolio' },
+        { label: 'MBF Lab', href: '#mbf-lab' },
+        { label: 'Contact Us', href: 'Contact.dc.html' },
       ],
       trustItems: [
         '100% custom — designed from scratch',
@@ -558,6 +561,14 @@ class Component extends DCLogic {
         { name: 'Restaurant Website', category: 'Website', price: '$49', img: 'assets/studio-2.jpg', demoHref: 'Demo - Restaurant Website.dc.html', detailHref: 'Demo - Restaurant Website.dc.html' },
         { name: 'Marketing Dashboard', category: 'Dashboard', price: '$59', img: 'assets/brother-hex-cat-logo.png', demoHref: 'Demo - Marketing Dashboard.dc.html', detailHref: 'Demo - Marketing Dashboard.dc.html' },
       ],
+      packageCategories: [
+        { n: '01', title: 'Website Design & Development', href: 'Packages.dc.html?category=websites', desc: 'Premium business websites, landing pages, and responsive digital homes for your brand.' },
+        { n: '02', title: 'Logo Design', href: 'Packages.dc.html?category=logos', desc: 'Distinct logo directions crafted for recognition, trust, and flexible use.' },
+        { n: '03', title: 'Illustrations', href: 'Packages.dc.html?category=illustrations', desc: 'Custom artwork, character visuals, covers, and campaign illustrations.' },
+        { n: '04', title: 'Branding', href: 'Packages.dc.html?category=branding', desc: 'Visual identity systems, brand direction, and launch-ready brand assets.' },
+        { n: '05', title: 'E-Commerce Websites', href: 'Packages.dc.html?category=ecommerce', desc: 'Online store experiences shaped around products, trust, and conversion.' },
+      ],
+      portfolioFilters: ['All', 'Websites', 'Branding', 'Logos', 'Illustration', 'E-Commerce', 'AI & Interactive'],
       portfolio: [
         { slot: 'pf-1', label: 'Character Illustration', ph: 'Drop a brand identity project', span: 'span 2', img: 'assets/brother-creature-devil.png' },
         { slot: 'pf-2', label: 'Character Design', ph: 'Drop a logo design project', span: 'span 1', img: 'assets/brother-knight-green.png' },
